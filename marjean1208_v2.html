@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marj.ean1208 · Repostería Artesanal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FAF5EE;
+      --violet:   #6B3FA0;
+      --violet2:  #9B5FD4;
+      --silver:   #C8D0DC;
+      --silver2:  #E8ECF2;
+      --cocoa:    #3B1F0C;
+      --blush:    #E8C4A0;
+      --caramel:  #C97D3E;
+      --ig-start: #833AB4;
+      --ig-mid:   #E1306C;
+      --ig-end:   #F77737;
+      --wabg:     #25D366;
+      --white:    #FFFFFF;
+      --text:     #2C1A0E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── dotted bg ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(107,63,160,0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 72px 24px 56px;
+    }
+
+    /* animated shimmer badge */
+    .brand-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(120deg, var(--violet), var(--violet2), #B07FE0, var(--violet));
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+      color: #fff;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 8px 20px; border-radius: 999px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(107,63,160,0.4);
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* silver crown decoration */
+    .crown {
+      font-size: 2rem; margin-bottom: 6px;
+      filter: drop-shadow(0 2px 6px rgba(200,208,220,0.7));
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 5.8rem);
+      font-weight: 700; line-height: 1.05;
+      background: linear-gradient(135deg, var(--cocoa) 0%, var(--violet) 60%, var(--violet2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+    }
+
+    .hero-msg {
+      font-size: 1.05rem; font-weight: 300;
+      color: #5A3A6A; line-height: 1.75;
+      max-width: 500px; margin-bottom: 46px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-group {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 30px; border-radius: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-4px); filter: brightness(1.08); }
+    .btn:active { transform: translateY(0); }
+    .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    /* Instagram */
+    .btn-ig {
+      background: linear-gradient(135deg, var(--ig-start), var(--ig-mid), var(--ig-end));
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(225,48,108,0.35);
+    }
+
+    /* WhatsApp — violeta + plateado */
+    .btn-wa {
+      background: linear-gradient(135deg, var(--violet) 0%, var(--violet2) 50%, var(--silver) 100%);
+      color: #fff;
+      box-shadow: 0 6px 28px rgba(107,63,160,0.45);
+      border: 1.5px solid rgba(200,208,220,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::after {
+      content: '';
+      position: absolute; top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: skewX(-20deg);
+      animation: gloss 2.8s ease-in-out infinite;
+    }
+
+    @keyframes gloss {
+      0%   { left: -75%; }
+      60%, 100% { left: 130%; }
+    }
+
+    /* ════════════════════════════════
+       DIVIDER
+    ════════════════════════════════ */
+    .divider {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 16px;
+      max-width: 700px; margin: 16px auto 0; padding: 0 24px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--violet2), transparent);
+    }
+    .divider span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.05rem;
+      color: var(--violet); white-space: nowrap;
+    }
+
+    /* ════════════════════════════════
+       MENU
+    ════════════════════════════════ */
+    .menu-section {
+      position: relative; z-index: 1;
+      max-width: 980px; margin: 52px auto 0;
+      padding: 0 24px 80px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      text-align: center; color: var(--cocoa);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      text-align: center; color: #7A5090;
+      font-size: 0.93rem; margin-bottom: 44px;
+    }
+
+    /* ── Cards ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 3px 20px rgba(107,63,160,0.1);
+      border: 1.5px solid rgba(107,63,160,0.1);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(107,63,160,0.18);
+    }
+
+    /* real image via Unsplash source */
+    .card-img {
+      width: 100%; height: 190px;
+      object-fit: cover; display: block;
+      background: var(--silver2);
+    }
+
+    /* emoji fallback shown while image loads */
+    .card-img-wrap {
+      position: relative; width: 100%; height: 190px; overflow: hidden;
+    }
+
+    .card-img-wrap .emoji-bg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, #F0E8FF, #E8ECF2);
+    }
+
+    .card-img-wrap img {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .card-body { padding: 20px 20px 22px; }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--violet); margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.86rem; color: #5A3A2A;
+      line-height: 1.65;
+    }
+
+    /* ════════════════════════════════
+       PAYMENT
+    ════════════════════════════════ */
+    .payment-section {
+      position: relative; z-index: 1;
+      background: linear-gradient(160deg, var(--violet) 0%, #3B1460 100%);
+      color: #fff; padding: 68px 24px 72px;
+      text-align: center;
+    }
+
+    .payment-section .section-title { color: var(--silver2); margin-bottom: 8px; }
+    .payment-section .section-sub   { color: #C4A8E0; margin-bottom: 40px; }
+
+    .pay-grid {
+      display: flex; flex-wrap: wrap;
+      gap: 16px; justify-content: center;
+      max-width: 720px; margin: 0 auto;
+    }
+
+    .pay-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.09);
+      border: 1.5px solid rgba(200,208,220,0.3);
+      border-radius: 14px; padding: 14px 22px;
+      font-size: 0.94rem; font-weight: 500; color: var(--silver2);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .pay-pill:hover {
+      background: rgba(255,255,255,0.17);
+      transform: translateY(-3px);
+    }
+
+    .pay-pill .pi { font-size: 1.5rem; }
+
+    /* silver accent bar */
+    .silver-bar {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--silver), var(--violet2));
+      border-radius: 999px;
+      margin: 22px auto 0;
+    }
+
+    /* ════════════════════════════════
+       CTA BOTTOM
+    ════════════════════════════════ */
+    .cta-bottom {
+      position: relative; z-index: 1;
+      text-align: center; padding: 64px 24px 80px;
+    }
+
+    .cta-bottom p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.25rem;
+      color: var(--cocoa); margin-bottom: 30px;
+    }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 24px;
+      font-size: 0.8rem; color: #9C6FA0;
+      border-top: 1px solid rgba(107,63,160,0.18);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 500px) {
+      .btn { width: 100%; justify-content: center; }
+      .btn-group { flex-direction: column; align-items: stretch; max-width: 360px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="brand-badge">✦ Repostería Artesanal ✦</div>
+  <div class="crown">👑</div>
+  <h1 class="hero-title">Marj.<em>ean</em>1208</h1>
+  <p class="hero-msg">
+    Dulces hechos con amor, ingredientes seleccionados y ese sabor casero<br>
+    que siempre querés volver a probar. 🍰<br>
+    <strong style="color:var(--violet);font-weight:600;">Pedidos personalizados para cada ocasión especial.</strong>
+  </p>
+
+  <div class="btn-group">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/marj.ean1208" target="_blank" class="btn btn-ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      Ver en Instagram
+    </a>
+
+    <!-- WhatsApp violeta + plateado -->
+    <a href="https://wa.me/543704830447?text=¡Hola%2C%20cómo%20estás!%20¿Qué%20te%20gustaría%20encargar%3F%20🍰" target="_blank" class="btn btn-wa">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.763.461 3.418 1.268 4.858L2.05 22l5.294-1.387A9.96 9.96 0 0012.004 22C17.523 22 22 17.523 22 12.004 22 6.477 17.523 2 12.004 2zm0 18.18a8.177 8.177 0 01-4.174-1.14l-.299-.178-3.143.824.838-3.066-.195-.315A8.18 8.18 0 0112.004 3.82c4.518 0 8.18 3.663 8.18 8.184 0 4.518-3.662 8.176-8.18 8.176z"/>
+      </svg>
+      ¡Hola! ¿Qué te gustaría encargar?
+    </a>
+  </div>
+</section>
+
+<div class="divider"><span>✦ Nuestros productos ✦</span></div>
+
+<!-- ══════════ MENÚ ══════════ -->
+<section class="menu-section">
+  <h2 class="section-title">Catálogo de delicias</h2>
+  <p class="section-sub">Elegí tu favorito — también hacemos pedidos combinados y personalizados 🎂</p>
+
+  <div class="cards-grid">
+
+    <!-- 1. Budín de Pan -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🍞</div>
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=240&fit=crop&auto=format" alt="Budín de Pan" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Budín de Pan</div>
+        <p class="card-desc">Receta tradicional con miga suave, costra dorada y un aroma irresistible. Ideal para el desayuno o la merienda. Disponible en porciones o molde entero.</p>
+      </div>
+    </div>
+
+    <!-- 2. Budín Tradicional -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🍮</div>
+        <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=240&fit=crop&auto=format" alt="Budín Tradicional" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Budín Tradicional</div>
+        <p class="card-desc">El clásico de siempre: esponjoso, húmedo y con el sabor casero que todos amamos. Perfecto para regalar o compartir en familia.</p>
+      </div>
+    </div>
+
+    <!-- 3. Budín con Frutos Secos -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🌰</div>
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=240&fit=crop&auto=format" alt="Budín con Frutos Secos" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Budín con Frutos Secos</div>
+        <p class="card-desc">Nueces, almendras y pasas integradas en una masa aromática. Una versión más rica y nutritiva del budín, perfecta para los que buscan algo especial.</p>
+      </div>
+    </div>
+
+    <!-- 4. Lemon Pie -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🍋</div>
+        <img src="https://images.unsplash.com/photo-1519915028121-7d3463d5b1ff?w=400&h=240&fit=crop&auto=format" alt="Lemon Pie" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Lemon Pie</div>
+        <p class="card-desc">Crema de limón ácida y sedosa sobre masa quebrada, coronada con merengue italiano dorado. Refrescante, elegante y visualmente impactante.</p>
+      </div>
+    </div>
+
+    <!-- 5. Chiscaque -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🥐</div>
+        <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=400&h=240&fit=crop&auto=format" alt="Chiscaque" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Chiscaque</div>
+        <p class="card-desc">Masa crocante y relleno dulce en capas que sorprende en cada mordida. Una delicia única de la casa. Consultá los sabores disponibles de temporada.</p>
+      </div>
+    </div>
+
+    <!-- 6. Bizcochuelo -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🎂</div>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=240&fit=crop&auto=format" alt="Bizcochuelo" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Bizcochuelo</div>
+        <p class="card-desc">Base esponjosa y aireada, perfecta sola o como base para tortas decoradas. De vainilla, chocolate o combinado. Tamaños a elección del cliente.</p>
+      </div>
+    </div>
+
+    <!-- 7. Pastafrola -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🥧</div>
+        <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=240&fit=crop&auto=format" alt="Pastafrola" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Pastafrolas</div>
+        <p class="card-desc">Masa tierna de manteca con relleno de membrillo o batata. La infaltable de las tardes de mate. Disponible entera o en porciones individuales.</p>
+      </div>
+    </div>
+
+    <!-- 8. Muffins -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🧁</div>
+        <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&h=240&fit=crop&auto=format" alt="Muffins" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Muffins</div>
+        <p class="card-desc">Tiernos por dentro, con copete dorado por fuera. Sabores: vainilla, chocolate, limón, banana-nuez y más. Ideales para eventos, desayunos o regalos.</p>
+      </div>
+    </div>
+
+    <!-- 9. Tortas -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🎂</div>
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=240&fit=crop&auto=format" alt="Tortas" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Tortas</div>
+        <p class="card-desc">Tortas personalizadas para cumpleaños, casamientos y toda ocasión especial. Diseño, sabor y relleno completamente a elección. Consultá disponibilidad con anticipación.</p>
+      </div>
+    </div>
+
+    <!-- 10. Tartas Frutales -->
+    <div class="card">
+      <div class="card-img-wrap">
+        <div class="emoji-bg">🫐</div>
+        <img src="https://images.unsplash.com/photo-1519915028121-7d3463d5b1ff?w=400&h=240&fit=crop&auto=format" alt="Tartas Frutales" loading="lazy"/>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Tartas Frutales</div>
+        <p class="card-desc">Crema pastelera con fruta fresca de temporada sobre masa crocante. Frutillas, arándanos, durazno y más. Frescas, coloridas y visualmente preciosas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ FORMAS DE PAGO ══════════ -->
+<section class="payment-section">
+  <h2 class="section-title">Formas de pago</h2>
+  <p class="section-sub">Elegimos la comodidad para vos — aceptamos múltiples medios</p>
+  <div class="silver-bar"></div>
+
+  <div class="pay-grid" style="margin-top:38px;">
+    <div class="pay-pill"><span class="pi">💵</span> Efectivo</div>
+    <div class="pay-pill"><span class="pi">📱</span> Transferencia bancaria</div>
+    <div class="pay-pill"><span class="pi">📲</span> Mercado Pago</div>
+    <div class="pay-pill"><span class="pi">💳</span> Tarjeta de débito</div>
+    <div class="pay-pill"><span class="pi">💳</span> Tarjeta de crédito</div>
+    <div class="pay-pill"><span class="pi">🔗</span> Código QR</div>
+    <div class="pay-pill"><span class="pi">💜</span> Uala / Naranja X</div>
+  </div>
+</section>
+
+<!-- ══════════ CTA FINAL ══════════ -->
+<section class="cta-bottom">
+  <p>¿Lista para endulzar tu día? ¡Escribinos y coordinamos tu pedido! 🍰</p>
+  <div class="btn-group">
+    <a href="https://www.instagram.com/marj.ean1208" target="_blank" class="btn btn-ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      @Marj.ean1208
+    </a>
+    <a href="https://wa.me/543704830447?text=¡Hola%2C%20cómo%20estás!%20¿Qué%20te%20gustaría%20encargar%3F%20🍰" target="_blank" class="btn btn-wa">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.763.461 3.418 1.268 4.858L2.05 22l5.294-1.387A9.96 9.96 0 0012.004 22C17.523 22 22 17.523 22 12.004 22 6.477 17.523 2 12.004 2zm0 18.18a8.177 8.177 0 01-4.174-1.14l-.299-.178-3.143.824.838-3.066-.195-.315A8.18 8.18 0 0112.004 3.82c4.518 0 8.18 3.663 8.18 8.184 0 4.518-3.662 8.176-8.18 8.176z"/>
+      </svg>
+      Hacer mi pedido por WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Marj.ean1208 · Repostería Artesanal · Hecho con 💜 y mucho azúcar
+</footer>
+
+</body>
+</html>
